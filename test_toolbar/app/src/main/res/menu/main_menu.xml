@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home" android:title="Home" android:icon="@drawable/cat1"></item>
+        <item android:id="@+id/nav_cats" android:title="Cats" android:icon="@drawable/cat1"></item>
+        <item android:id="@+id/nav_dogs" android:title="Dogs" android:icon="@drawable/cat1"></item>
+        <item android:id="@+id/nav_rabbits" android:title="Rabbit" android:icon="@drawable/cat1"></item>
+    </group>
+
+</menu>
