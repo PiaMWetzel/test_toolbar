@@ -1,0 +1,83 @@
+package com.example.buttoncounterapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText userInput;
+    private Button button;
+    private TextView textView;
+    private int numTimesClicked = 0;
+    private static final String TAG = "MainActivity";
+
+    private final String TEXT_CONTENTS = "Text_content";
+
+    private ListView listApps;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate:  ");
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //get references
+        userInput = (EditText) findViewById(R.id.editText);
+        button = (Button) findViewById(R.id.button);
+        textView = (TextView) findViewById(R.id.textView);
+        //list view
+        listApps = (ListView) findViewById(R.id.list_view);
+
+        //clear textview
+        textView.setText("");
+
+        //make textView scroll
+        textView.setMovementMethod(new ScrollingMovementMethod());
+
+        //define onclick method
+        View.OnClickListener ourOnClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //get text input
+                String input = userInput.getText().toString();
+
+                numTimesClicked += 1;
+                String result = "\nThe button got tapped " + numTimesClicked + " time" + " " + input;
+                textView.append(result);
+            }
+        };
+
+        //attach onclick to button
+        button.setOnClickListener(ourOnClickListener);
+//----------------------------------------------------------------
+        //REGULAR ARRAY ADAPTER
+        Animals animalList = new Animals();
+        //create adapter with animal strings
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+                MainActivity.this, R.layout.list_view, animalList.getAnimals());
+
+        //attach adapter to list view
+        listApps.setAdapter(arrayAdapter);
+
+//----------------------------------------------------------------
+
+        //CUSTOM ADAPTER
+
+
+        Log.d(TAG, "onCreate: out");
+
+    }
+
+
+}
