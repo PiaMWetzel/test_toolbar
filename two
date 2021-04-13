@@ -1,0 +1,45 @@
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.List;
+
+public class ArtistsAdapter extends ArrayAdapter {
+    private final int layoutResource;
+    private final LayoutInflater layoutInflater;
+    private List<Artists> artists;
+
+    public ArtistsAdapter(@NonNull Context context, int resource, List<Artists> artists) {
+
+        super(context, resource);
+        this.layoutResource = resource;
+        this.layoutInflater = LayoutInflater.from(context);
+        this.artists = ArtistsParser.g;
+    }
+
+    //need to overwrite
+    @Override
+    public int getCount() {
+        //return super.getCount();
+        return artists.size();
+    }
+    //need to overwrite
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view = layoutInflater.inflate(layoutResource, parent, false);
+        TextView aName = (TextView) view.findViewById(R.id.nArtist);
+        TextView aTitle = (TextView) view.findViewById(R.id.nTitle);
+        TextView aSummary = (TextView) view.findViewById(R.id.nSummary);
+
+        Artists currentApp = artists.get(position);
+        aName.setText(currentApp.getName());
+        aTitle.setText(currentApp.getTitle());
+        aSummary.setText(currentApp.getSummary());
+        //return super.getView(position, convertView, parent);
+        return view;
+    }
+
+
+
+}
